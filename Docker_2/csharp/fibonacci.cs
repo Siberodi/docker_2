@@ -1,22 +1,42 @@
 using System;
-using System.Diagnostics;
+using System.IO;
+using System.Numerics; // Necesario para BigInteger
+using System.Diagnostics; // Necesario para Stopwatch
 
-class Program {
-    static void Main() {
-        Stopwatch sw = Stopwatch.StartNew();
-        ulong result = Fibonacci(10000); // Se usa la variable para evitar warnings
-        sw.Stop();
+namespace SumaFibonacci
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Iniciamos un cronómetro
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-        Console.WriteLine(sw.ElapsedMilliseconds); // Solo imprime el tiempo en milisegundos
-    }
+            BigInteger f0 = 0;   // Fibonacci(0)
+            BigInteger f1 = 1;   // Fibonacci(1)
+            BigInteger suma = 0; // Acumulador para la suma
 
-    static ulong Fibonacci(int n) {
-        ulong a = 0, b = 1;
-        for (int i = 0; i < n; i++) {
-            ulong temp = a;
-            a = b;
-            b = temp + b;
+            // Iteramos 10.000 veces
+            for (int i = 0; i < 10_000; i++)
+            {
+                // Sumamos el término actual de la serie
+                suma += f0;
+
+                // Calculamos el siguiente número de Fibonacci
+                BigInteger siguiente = f0 + f1;
+                f0 = f1;
+                f1 = siguiente;
+            }
+
+            // Detenemos el cronómetro
+            stopwatch.Stop();
+            long tiempoTranscurridoMs = stopwatch.ElapsedMilliseconds;
+
+            // Mostramos en consola
+            Console.WriteLine({tiempoTranscurridoMs});
+
+           
         }
-        return a;
     }
 }
