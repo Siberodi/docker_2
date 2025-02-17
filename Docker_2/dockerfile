@@ -8,9 +8,7 @@ WORKDIR /app
 # Clonar el repositorio con los códigos
 RUN git clone https://github.com/Siberodi/docker_2.git /app
 
-# Copiar el script de ejecución
-COPY run_benchmark.sh /app/run_benchmark.sh
-
+# Dar permisos de ejecución al script
 RUN chmod +x /app/run_benchmark.sh
 
 CMD ["bash", "/app/run_benchmark.sh"]
