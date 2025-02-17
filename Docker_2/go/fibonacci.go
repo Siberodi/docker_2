@@ -15,9 +15,9 @@ func fibonacci(n int) int {
 
 func main() {
     start := time.Now()
-    result := fibonacci(10000) // Variable `result` ahora es usada
+    result := fibonacci(10000)
     elapsed := time.Since(start)
 
-    fmt.Println(elapsed.Milliseconds()) // Muestra el tiempo en ms
-    _ = result // Se usa `result` para evitar error de variable no utilizada
+    fmt.Println(elapsed.Milliseconds())
 }
+
