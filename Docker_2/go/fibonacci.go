@@ -5,8 +5,8 @@ import (
     "time"
 )
 
-func fibonacci(n int) int {
-    a, b := 0, 1
+func fibonacci(n int) uint64 {
+    var a, b uint64 = 0, 1
     for i := 0; i < n; i++ {
         a, b = b, a+b
     }
@@ -15,9 +15,10 @@ func fibonacci(n int) int {
 
 func main() {
     start := time.Now()
-    result := fibonacci(10000) // Se usa la variable `result`
+    result := fibonacci(10000) // Se usa uint64 para evitar overflow
     elapsed := time.Since(start)
 
-    fmt.Println(elapsed.Milliseconds()) // Imprime el tiempo de ejecución
-    fmt.Println("Resultado:", result)  // Imprime el resultado para evitar error
+    fmt.Println(elapsed.Milliseconds()) // Imprime el tiempo en milisegundos
+    _ = result // Se usa `result` para evitar warnings
 }
+
