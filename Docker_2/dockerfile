@@ -1,0 +1,16 @@
+# Dockerfile del contenedor base
+FROM docker:latest
+
+RUN apk add --no-cache git bash
+
+WORKDIR /app
+
+# Clonar el repositorio con los códigos
+RUN git clone https://github.com/tu_usuario/benchmark-fibonacci.git /app
+
+# Copiar el script de ejecución
+COPY run_benchmark.sh /app/run_benchmark.sh
+
+RUN chmod +x /app/run_benchmark.sh
+
+CMD ["bash", "/app/run_benchmark.sh"]
